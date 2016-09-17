@@ -24,7 +24,7 @@ class Calculation
 			 if(ch>='0'&& ch<='9')
 			 {
 				 //its a operand so push to the stack
-				 System.out.println("test");
+				 System.out.println("test2");
 				 stack.push((int)ch -'0');//convert char to int
 			 }
 			 else
