@@ -15,7 +15,7 @@ public class EvaluatePostfix {
 		
 		 
 	     in.close();
-	
+	     System.out.println("test");
 
 	}
 	
