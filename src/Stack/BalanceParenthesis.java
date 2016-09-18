@@ -19,7 +19,7 @@ public class BalanceParenthesis {
 
 	}
 	//Customize function to convert
-	public static Character[] toCharacterArray( String s ) {
+	/*public static Character[] toCharacterArray( String s ) {
 
 		   if ( s == null ) {
 		     return null;
@@ -32,18 +32,19 @@ public class BalanceParenthesis {
 		   }
 
 		   return array;
-		}
+		}*/
 	
 	public static boolean checkBalParenthesis(String s)
 	{
-		 //convert string to Character Array
-		Character ch[]=toCharacterArray(s);
+		 /*convert string to Character Array
+		Character ch[]=toCharacterArray(s);*/
 		//create stack object
 		 Stack<Character> stack =new Stack<Character>();
 		 
 		 //scan from left to right
-		 for(Character c:ch)
+		 for(int i=0;i<s.length();i++)
 		 {
+			 char c = s.charAt(i);
 			 if((c=='{')||(c=='(')||(c=='['))
 			{
 				 stack.push(c);
