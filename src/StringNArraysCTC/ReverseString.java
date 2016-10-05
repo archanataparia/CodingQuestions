@@ -45,6 +45,7 @@ public class ReverseString {
 			sb.append(String.valueOf(ch[i]));
 		}
 		return sb.toString();
+		 
 	}
 	//using recursion and substring function
 	static String reverse5(String s)
@@ -55,6 +56,9 @@ public class ReverseString {
 		
 		
 	}
+	
+
+	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		Scanner sc = new Scanner(System.in);
@@ -74,7 +78,38 @@ public class ReverseString {
 		System.out.println("with recursion");
 		String revStr5 = reverse5(str);
 		System.out.print(revStr5);
+		
+		System.out.println();
+		System.out.println("Hello Watson");
+		String output = reverseCase("Thou art thyself though not a Montague - from Romeo and Juliet");
+		System.out.print(output);
 		sc.close();
+	}
+	
+	/*Reverse a string like -----
+	 * Hello Watson output is Nostaw Olleh
+	 * Thou art thyself though not a Montague - from Romeo and Juliet 
+	 * output is Teiluj Dna Oemor Morf - Eugatnom A Ton Hguoht Flesyht Tra Uoht
+	 * --------------*/
+	private static String reverseCase(String string) {
+		boolean flag= false;
+		StringBuilder result=new StringBuilder();
+		string=string.toLowerCase();
+		for(int i=string.length()-1;i>=0;i--)
+		{	
+			String temp = String.valueOf(string.charAt(i));
+			if((i==string.length()-1))
+			 result.append(string.toUpperCase().charAt(i));
+			else if (flag==true)
+			{
+				result.append(string.toUpperCase().charAt(i));
+				flag=false;
+			}
+			else
+				 result.append(string.charAt(i));
+			if (temp.matches(" ")) flag=true;
+		}
+		return result.toString();
 	}
 
 }

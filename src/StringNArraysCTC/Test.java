@@ -14,6 +14,7 @@ public class Test {
                 maxTwo = n;
             }
         }
+        
         System.out.println("First Max Number: "+maxOne);
         System.out.println("Second Max Number: "+maxTwo);
     }
@@ -31,6 +32,9 @@ public class Test {
 		System.out.println("int: "+i+" long: "+l+" double "+d);
 		return s;
 	}
+	
+	
+	
      	public static void main(String[] args)  {
 		int num[] = {5,34,78,2,45,1,99,23};
 		
@@ -43,7 +47,7 @@ public class Test {
 		}
 		
             printTwoMaxNumbers(num);
-    }
-     	}
-
-
+ 
+  
+	  }
+	}
