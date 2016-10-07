@@ -2,18 +2,6 @@ package Tree;
 
 import java.util.Scanner;
 
-//new node creation
-class Node
-{
-	Integer data;
-	Node left;
-	Node right;
-	Node(Integer data)
-	{
-		this.data=data;
-		left=right=null;
-	}
-}
 
 public class BineryTree {
 
