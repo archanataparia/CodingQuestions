@@ -41,6 +41,7 @@ public class TreeApp {
 					break;
 			case 5: System.out.println("enter type of traverse 1.PreOrder, 2.PostOrder, 3.InOrder");
 					value=sc.nextInt();
+					tree.traverse(value);
 					break;
 			default: System.out.println("invalid entry");
 			

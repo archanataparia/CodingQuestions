@@ -1,7 +1,9 @@
 package Tree;
 
 import java.util.Stack;
-//this is basic tree operations insert, delete, find and traverse
+/*------------------------------------------------------------------------------------
+ * program to perform basic tree operations insert, delete, find and traverse
+ */
 public class Tree {
 	private Node root;
 	public Tree()
@@ -175,48 +177,181 @@ public class Tree {
 	{
 		switch(choice)
 		{
-		case 1: preOrder(root);
+		case 1: System.out.println("data in preorder using iteration: ");
+				preOrder(root);
+				System.out.println("data in preorder using recursion: ");
 				preOrderRec(root);
 				break;
-		case 2: postOrder(root);
+		case 2: System.out.println("data in postorder using iteration: ");
+				postOrder(root);
+				System.out.println("data in postorder using recursion: ");
 				postOrderRec(root);
 				break;	
-		case 3: inOrder(root);
+		case 3: System.out.println("data in inorder using iteration: ");
+				inOrder(root);
+				System.out.println("data in inorder using recursion: ");
 				inOrderRec(root);
 				break;
 		default: System.out.println("invalid input");
 		}
 	}
+//------------------PREORDER traversal-------------------------
+//preorder traversal without recursion
+private void preOrder(Node tempRoot) {
+		// Root->Left->Right
+	Stack<Node> stack=new Stack<Node>();
 	
-private void inOrderRec(Node root2) {
-		// TODO Auto-generated method stub
+	if(tempRoot == null) return;
+	stack.push(tempRoot);//push root node to the stack
+	while(!stack.isEmpty())
+	{
+		Node topNode= stack.peek();
+		System.out.print(topNode.data+" ");
+		stack.pop();
+		
+		if(topNode.right!=null)
+			stack.push(topNode.right);//push right first in stack to pop left first
+	
+		if(topNode.left!=null)
+			stack.push(topNode.left);
+	}
+		
+	}	
+//preorder traversal with recursion
+private void preOrderRec(Node tempRoot) {
+	// Root->Left->Right
+	if(tempRoot!=null)
+	{
+		System.out.print(tempRoot.data+" ");
+		preOrderRec(tempRoot.left);
+		preOrderRec(tempRoot.right);
+	}
+	
+}
+//------------------POSTORDER traversal-------------------------
+//postorder traversal without recursion
+private void postOrder(Node tempRoot) {
+	// Left->Right->Root
+	Stack<Node> stack=new Stack<Node>();
+	
+	Node temp=tempRoot;
+	Node prev=null;
+	if(temp==null) return;
+	stack.push(temp);
+	
+	while(!stack.isEmpty())
+	{
+		temp=stack.peek();
+		//moving down in the tree required push
+		/* go down the tree in search of a leaf an if so process it 
+        and pop stack otherwise move down */
+			if((prev==null)||(prev.left==temp)||(prev.right==temp))//prev node is null or parent
+			{
+				if(temp.left!=null) stack.push(temp.left);
+				else if (temp.right!=null) stack.push(temp.right);
+				else //both left and right are null
+				{
+					System.out.print(temp.data+" ");
+					stack.pop();
+				}
+			}
+			
+		//Coming up from left
+			/* go up the tree from left node, if the child is right 
+            push it onto stack otherwise process parent and pop 
+            stack */
+			else if(prev==temp.left)
+			{
+				if(temp.right!=null)
+					stack.push(temp.right);
+				else
+				{
+					System.out.print(temp.data+" ");
+					stack.pop();
+				}
+			}
+			
+		//moving up from right
+			else if(prev==temp.right)
+			{
+				System.out.print(temp.data+ " ");
+				stack.pop();
+			}
+			
+			prev=temp;
+	}//end of while
+	
+}
+//postorder traversal with recursion
+private void postOrderRec(Node tempRoot) {
+		// Left->Right->Root
+		if(tempRoot!=null)
+		{
+			postOrderRec(tempRoot.left);
+			postOrderRec(tempRoot.right);
+			System.out.print(tempRoot.data+ " ");
+		}
 		
 	}
 
-private void postOrderRec(Node root2) {
-		// TODO Auto-generated method stub
-		
+//------------------INORDER traversal-------------------------
+//inorder traversal with recursion	}
+private void inOrderRec(Node tempRoot) {
+	// Left->Root->Right
+	if(tempRoot!=null)
+	{
+		inOrderRec(tempRoot.left);
+		System.out.print(tempRoot.data+ " ");
+		inOrderRec(tempRoot.right);
 	}
+	
+}
+//inorder traversal without recursion
+private void inOrder(Node tempRoot) {
+		//  Left->Root->Right
+	Stack<Node> stack=new Stack<Node>();
+	Node root=tempRoot;
+	
+	if(root==null) return;
+	//first node to be visited will be left one
+	while(root!=null)
+	{
+		stack.push(root);
+		root=root.left;
+	}
+	
+	while(stack.size()>0)
+	{
+		root=stack.pop();
+		System.out.print(root.data+" ");
+		if(root.right!=null)
+		{
+			root=root.right;
+			while(root!=null)
+			{
+				stack.push(root);
+				root=root.left;
+			}
+		}
+	}
+	
+	
+	while(!stack.isEmpty())
+	{
+		
+		Node topNode= stack.peek();
+		if(topNode.right!=null)
+			stack.push(topNode.right);//push right first in stack to pop left first
+	
+		if(topNode.left!=null)
+			stack.push(topNode.left);
+		
+		System.out.print(topNode.data+" ");
+		stack.pop();
+	}
+}
 
-private void preOrderRec(Node root2) {
-		// TODO Auto-generated method stub
-		
-	}
 
-private void inOrder(Node root2) {
-		// TODO Auto-generated method stub
-		
-	}
-
-private void postOrder(Node root2) {
-		// TODO Auto-generated method stub
-		
-	}
-
-private void preOrder(Node root2) {
-		// TODO Auto-generated method stub
-		
-	}
 
 //------------function to display tree-------------
 	public void displayTree()
