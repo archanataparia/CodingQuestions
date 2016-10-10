@@ -39,7 +39,7 @@ public class TreeApp {
 					value=sc.nextInt();
 					System.out.println(tree.delete(value));
 					break;
-			case 5: System.out.println("enter type of traverse 1.PreOrder, 2.PostOrder, 3.InOrder");
+			case 5: System.out.println("enter type of traverse 1.PreOrder, 2.PostOrder, 3.InOrder, 4.BFS");
 					value=sc.nextInt();
 					tree.traverse(value);
 					break;

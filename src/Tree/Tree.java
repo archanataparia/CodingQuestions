@@ -192,9 +192,14 @@ public class Tree {
 				System.out.println("data in inorder using recursion: ");
 				inOrderRec(root);
 				break;
+		case 4: System.out.println("data in level order (BFS): ");
+				BFS(root);
+				break;
 		default: System.out.println("invalid input");
 		}
 	}
+
+
 //------------------PREORDER traversal-------------------------
 //preorder traversal without recursion
 private void preOrder(Node tempRoot) {
@@ -351,7 +356,39 @@ private void inOrder(Node tempRoot) {
 	}
 }
 
+//------------------BFS or level order traversal-------------------------
+private void BFS(Node tempRoot) {
+	int i,height;
+	height=getHeight(tempRoot);
+	for(i=1;i<=height;i++) printLevelNode(tempRoot,i);
+	
+}
 
+//function to calculate height of the tree
+private int getHeight(Node tempRoot) {
+	// function to calculate height of a tree
+	int lHeight,rHeight;
+	if(tempRoot==null) return 0;
+	else
+	{
+		lHeight=getHeight(tempRoot.left);
+		rHeight=getHeight(tempRoot.right);
+		if(lHeight>rHeight) return (lHeight+1);
+		else return (rHeight+1);
+	}
+}
+
+//function to print data in BFS mode
+private void printLevelNode(Node tempRoot, int level) {
+	if(tempRoot==null) return;
+	if(level==1) System.out.print(" "+tempRoot.data);
+	else if (level>1)
+	{
+		printLevelNode(tempRoot.left, level-1);
+		printLevelNode(tempRoot.right, level-1);
+	}
+	
+}
 
 //------------function to display tree-------------
 	public void displayTree()
