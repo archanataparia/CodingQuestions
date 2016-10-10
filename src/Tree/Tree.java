@@ -5,7 +5,7 @@ import java.util.Stack;
  * program to perform basic tree operations insert, delete, find and traverse
  */
 public class Tree {
-	private Node root;
+	public Node root;
 	public Tree()
 	{
 		root=null;
