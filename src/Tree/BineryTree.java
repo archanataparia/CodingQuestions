@@ -18,7 +18,7 @@ public class BineryTree {
 		 }  
 
 	//create binary tree 
-	public static Node createBinaryTree()
+	public Node createBinaryTree()
 	{
 		Node rootNode =new Node(40);  
 		  Node node20=new Node(20);  
@@ -86,7 +86,7 @@ public class BineryTree {
 	public static void main(String[] args) {
 		Scanner sc=new Scanner(System.in);
 		BineryTree bt=new BineryTree();
-       Node rootNode =createBinaryTree();
+       Node rootNode =bt.createBinaryTree();
        
        bt.inOrder(rootNode);
        System.out.println(bt.isBalancetree(rootNode));
