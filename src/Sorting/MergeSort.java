@@ -52,7 +52,7 @@ public class MergeSort {
 
 	private static Integer[] merge(Integer[] left, Integer[] right, Integer[] a) {
 		
-		int len=a.length, leftLen = left.length, rightLen = right.length;
+		int leftLen = left.length, rightLen = right.length;
 		int i=0,j=0,k=0;
 		
 		while (i<leftLen && j<rightLen)

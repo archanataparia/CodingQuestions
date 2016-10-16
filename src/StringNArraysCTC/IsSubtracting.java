@@ -17,10 +17,12 @@ public class IsSubtracting {
 		}
 		return false;
 	}
+	
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		String s1 =sc.nextLine();
 		String s2 =sc.nextLine();
+		 
 		boolean result=isSubstring(s1, s2);
 		System.out.println(result);
 		sc.close();
