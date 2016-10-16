@@ -51,3 +51,75 @@ public class Test {
   
 	  }
 	}
+
+/*import java.util.HashMap;
+import java.util.Map;
+
+public class IBMEmployeeConflict {
+
+    public static String solveConflict(Map<String, String> hm,String s1,String s2)
+    {
+        boolean done=false;
+        String answer="";
+        while(!(done))
+        {
+            if(hm.get(s1)==hm.get(s2))
+            {
+                done=true;
+                answer= hm.get(s1);
+            }
+            else if(hm.get(s1)==s2)
+            {
+                done=true;
+                answer=  s2;
+            }
+            else if(hm.get(s2)==s1)
+            {
+                done=true;
+                answer=  s1;
+            }
+            else
+            {
+                s1=hm.get(s1);
+                s2=hm.get(s2);
+            }
+        }
+        return answer;
+    }
+    public static void main(String args[])
+    {
+        Map<String,String> hm=new HashMap<String, String>();
+        hm.put("Mary","Frank");
+        hm.put("Sam","Frank");
+        hm.put("Bob","Mary");
+        hm.put("Katie","Sam");
+        hm.put("Pete","Sam");
+        hm.put("John","Bob");
+
+        String employee1="Bob";
+        String employee2="Katie";
+
+        System.out.println(solveConflict(hm, employee1, employee2));
+
+		 String s="Frank->Mary,Mary->Sam,Mary->Bob,Sam->Katie,Sam->Pete,Bob->John,Bob,Katie";
+		    
+		   String[] sarr = s.split(",");
+		   String temp1=null,temp2=null;
+	    for(int i=0;i<sarr.length-2;i++)
+	    {
+	    	
+	    	 String[] temp=new String[2];
+	    	 if(sarr[i].contains("->")) 
+	    	 {
+	    		 temp=sarr[i].split("->");
+	    		 tree.createTree(temp[0]);
+	    		 tree.createTree(temp[1]);
+	    	 }
+	    }
+	    tree.displayTree();
+	    temp1=sarr[sarr.length-1];
+	    temp2=sarr[sarr.length-2];
+	    }
+    }
+}
+*/
