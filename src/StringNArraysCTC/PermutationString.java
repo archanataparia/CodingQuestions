@@ -14,32 +14,37 @@ static boolean strCheck(String str1,String str2)
 		//compare two char values
 		return Arrays.equals(chArr1, chArr2);
 	}
+
+/*Generating all permutations of a given string*/
+
+public static void permutation(String str) { 
+   permutation("", str); 
+}
+/* * Recursive method which actually prints all permutations * of given String, but since we are passing an empty String *
+*  as current permutation to start with, * I have made this method private and didn't exposed it to client. 
+*/
+private static void permutation(String prefix, String str) {
+   int n = str.length();
+   if (n == 0) System.out.println(prefix);
+   else {
+       for (int i = 0; i < n; i++)
+           permutation(prefix + str.charAt(i), str.substring(0, i) + str.substring(i+1, n));
+   }
+}
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		String str1=  sc.nextLine();
 		String str2=  sc.nextLine();
 		Boolean result = strCheck(str1, str2);
 		System.out.println(result);
+		System.out.println("Enter String to generate permutation");
+		
+		permutation(sc.nextLine());
 		sc.close();
 
 	}
 
 }
-/*Generating all permutations of a given string
- * 
- public static void permutation(String str) { 
-    permutation("", str); 
-}
-/* * Recursive method which actually prints all permutations * of given String, but since we are passing an empty String *
- *  as current permutation to start with, * I have made this method private and didn't exposed it to client. 
- 
-private static void permutation(String prefix, String str) {
-    int n = str.length();
-    if (n == 0) System.out.println(prefix);
-    else {
-        for (int i = 0; i < n; i++)
-            permutation(prefix + str.charAt(i), str.substring(0, i) + str.substring(i+1, n));
-    }*/
 
 /*/** based on CTC 6th edition
  * List permutation of a string

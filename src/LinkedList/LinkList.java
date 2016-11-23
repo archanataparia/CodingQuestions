@@ -38,6 +38,27 @@ class LinkList {
 		cn.next=newNode;
 		return head;
 	}
+	public static  Node insertMiddle(Node head,int data,int pos)
+	{	Node newNode=new Node(data);
+		if(head ==null) 
+		{newNode.next=head;
+		head=newNode;
+		return head;}
+		
+		Node cn=head;
+		Node prev=head;
+		int k=1;
+		while(cn!=null&&k<pos)
+		{
+			prev=cn;
+			cn = cn.next;
+			k++;
+		}
+		
+		newNode.next=cn;
+		prev.next=newNode;
+		return head;
+	}
 	public static  Node remove(Node head,int data)
 	{
 		Node cn=head;
@@ -65,7 +86,7 @@ class LinkList {
     {
           Scanner sc=new Scanner(System.in);
           Node head=null;
-          int T=sc.nextInt();
+         int T=sc.nextInt();
           while(T-->0){
               int ele=sc.nextInt();
               head=insertFirst(head,ele);
@@ -79,11 +100,17 @@ class LinkList {
               //display(head);
           }
           display(head);
-          int T2=sc.nextInt();
-  
-              head=remove(head,T2);
+          
+              int ele=sc.nextInt();
+              int pos=sc.nextInt();
+              head=insertMiddle(head,ele,pos);
               //display(head);
           display(head);
+          int T2=sc.nextInt();
+          
+          head=remove(head,T2);
+          //display(head);
+      display(head);
           sc.close();
 
    }
