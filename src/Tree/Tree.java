@@ -11,8 +11,7 @@ public class Tree {
 		root=null;
 	}
 	
-/*------function to insert in tree-------------*/
-	
+	/*------function to insert in tree-------------*/
 	//insert value in tree---insert function without recursion
 	public void insert(int value)
 	{
