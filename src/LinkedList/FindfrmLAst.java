@@ -5,37 +5,71 @@ import java.util.Scanner;
 
 public class FindfrmLAst {
 	
-	static int findElementfrmLastRecursion(Node head,int k)
+	/*static int findElementfrmLastRecursion(Node head,int k)
 	{
 		if(head ==null) return 0;
 		int count=0;
-		count = findElementfrmLastRecursion(head.next,k)+1;//recursive call
+		findElementfrmLastRecursion(head.next,k);//recursive call
+		count++;
 		if(count==k)
 		{
 			System.out.println(head.data);
 		}
 
 		return count;
-	}
+	}*/
 	
-	static Node findElementItrative(Node head, int k)
+	static void findElementItrative1(Node head, int k)
 	{
-		if(k<0) return null;
-		Node p1=head;
-		Node p2 = head;
-		for(int i =0;i<k-1;i++)
-		{	if(p2==null) return null;
-			p2=p2.next;
-		}
-		if(p2==null) return null;
-		while(p2!=null)
+		//with two scan O(n)time and O(n)space
+		int count=0;
+		Node temp=head;
+		//count the number of nodes
+		while(temp!=null)
 		{
-			p2=p2.next;
-			p1=p1.next;
+			temp=temp.next;
+			count++;
 		}
-		return p1;
+		
+		if(k>count)return;//check input validity 
+		temp=head;//reset temp
+		//print the count-k+1 node from starting as that will be kth node from last
+		for(int i=1;i<count-k+1;i++)
+		{
+			temp=temp.next;
+		}
+		System.out.println("node is "+temp.data);
+		
 		
 	}
+	static Node findElementItrative2(Node head, int k)
+	{
+		//with one scan O(n)time and O(1)space
+		 if(k<0) return null;
+		Node pTemp=head;
+		Node pNthNode = head;
+		for(int i=0;i<k;i++)
+		{	
+			if(pTemp!=null)
+				pTemp=pTemp.next;
+		}
+		//pNthNode starts moving only after pTemp made k moves
+		while(pTemp!=null)
+		{
+			if(pNthNode==null) 
+				pNthNode=head;
+			else
+				pNthNode=pNthNode.next;
+			pTemp=pTemp.next;//now both moves fw
+		}
+		//so when ptemp will reach to end pnthNode will point to Nth Node
+		if(pNthNode!=null) return pNthNode;
+		else
+			return null;
+				
+	
+	}
+	
 	public static void main(String[] args) {
 		
 		 Scanner sc=new Scanner(System.in);
@@ -49,11 +83,9 @@ public class FindfrmLAst {
         System.out.println("enter numebr");int k =sc.nextInt();
         LinkList.display(head);
         
-		int data = findElementfrmLastRecursion(head,k);
-		System.out.println(data);
-		Node head1 = findElementItrative(head,k);
-		System.out.println(head1.data);
-		//LinkList.display(head);
+		Node temp = findElementItrative2(head,k);
+		System.out.println("method2 "+temp.data);
+		findElementItrative1(head,k);
 		sc.close();
 		
 
