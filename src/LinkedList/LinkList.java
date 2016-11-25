@@ -9,6 +9,10 @@ class Node{
         data=d;
         next=null;
     }
+	int getData()
+	{
+		return this.data;
+	}
 	
 }
 class LinkList {

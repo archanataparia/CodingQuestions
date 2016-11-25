@@ -9,8 +9,7 @@ public class FindfrmLAst {
 	{
 		if(head ==null) return 0;
 		int count=0;
-		findElementfrmLastRecursion(head.next,k);//recursive call
-		count++;
+		count=findElementfrmLastRecursion(head.next,k)+1;//recursive call
 		if(count==k)
 		{
 			System.out.println(head.data);

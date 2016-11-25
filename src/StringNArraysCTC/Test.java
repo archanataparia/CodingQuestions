@@ -2,124 +2,91 @@ package StringNArraysCTC;
 
 import java.io.*;
 
+
 public class Test {
-	static void printTwoMaxNumbers(int[] nums){
-        int maxOne = 0;
-        int maxTwo = 0;
-        for(int n:nums){
-            if(maxOne < n){
-                maxTwo = maxOne;
-                maxOne =n;
-            } else if(maxTwo < n){
-                maxTwo = n;
-            }
-        }
-        
-        System.out.println("First Max Number: "+maxOne);
-        System.out.println("Second Max Number: "+maxTwo);
-    }
-	
-	public static String getInput() throws IOException
-	{
 
-		InputStreamReader ir=new InputStreamReader(System.in);
-		BufferedReader br=new BufferedReader(ir);
-		String s= br.readLine();
-		//conversion from string to other
-		int i=Integer.parseInt(s);
-		long l= Long.parseLong(s);
-		double d= Double.valueOf(s);
-		System.out.println("int: "+i+" long: "+l+" double "+d);
-		return s;
-	}
-	
-	
-	
-     	public static void main(String[] args)  {
-		int num[] = {5,34,78,2,45,1,99,23};
-		
-		try{
-			System.out.println("value of s: "+getInput());
-		}
-		catch (IOException e)
-		{
-			System.out.println("execption ocurs");
-		}
-		
-            printTwoMaxNumbers(num);
- 
-  
-	  }
-	}
+ static Node head1, head2;
 
-/*import java.util.HashMap;
-import java.util.Map;
+ static class Node {
 
-public class IBMEmployeeConflict {
+     int data;
+     Node next;
 
-    public static String solveConflict(Map<String, String> hm,String s1,String s2)
-    {
-        boolean done=false;
-        String answer="";
-        while(!(done))
-        {
-            if(hm.get(s1)==hm.get(s2))
-            {
-                done=true;
-                answer= hm.get(s1);
-            }
-            else if(hm.get(s1)==s2)
-            {
-                done=true;
-                answer=  s2;
-            }
-            else if(hm.get(s2)==s1)
-            {
-                done=true;
-                answer=  s1;
-            }
-            else
-            {
-                s1=hm.get(s1);
-                s2=hm.get(s2);
-            }
-        }
-        return answer;
-    }
-    public static void main(String args[])
-    {
-        Map<String,String> hm=new HashMap<String, String>();
-        hm.put("Mary","Frank");
-        hm.put("Sam","Frank");
-        hm.put("Bob","Mary");
-        hm.put("Katie","Sam");
-        hm.put("Pete","Sam");
-        hm.put("John","Bob");
+     Node(int d) {
+         data = d;
+         next = null;
+     }
+ }
+ /*function to get the intersection point of two linked
+ lists head1 and head2 */
+ int getNode() {
+     int c1 = getCount(head1);
+     int c2 = getCount(head2);
+     int d;
 
-        String employee1="Bob";
-        String employee2="Katie";
+     if (c1 > c2) {
+         d = c1 - c2;
+         return _getIntesectionNode(d, head1, head2);
+     } else {
+         d = c2 - c1;
+         return _getIntesectionNode(d, head2, head1);
+     }
+ }
 
-        System.out.println(solveConflict(hm, employee1, employee2));
 
-		 String s="Frank->Mary,Mary->Sam,Mary->Bob,Sam->Katie,Sam->Pete,Bob->John,Bob,Katie";
-		    
-		   String[] sarr = s.split(",");
-		   String temp1=null,temp2=null;
-	    for(int i=0;i<sarr.length-2;i++)
-	    {
-	    	
-	    	 String[] temp=new String[2];
-	    	 if(sarr[i].contains("->")) 
-	    	 {
-	    		 temp=sarr[i].split("->");
-	    		 tree.createTree(temp[0]);
-	    		 tree.createTree(temp[1]);
-	    	 }
-	    }
-	    tree.displayTree();
-	    temp1=sarr[sarr.length-1];
-	    temp2=sarr[sarr.length-2];
-	    }
-    }
+/* function to get the intersection point of two linked
+lists head1 and head2 where head1 has d more nodes than
+head2 */
+int _getIntesectionNode(int d, Node node1, Node node2) {
+ int i;
+ Node current1 = node1;
+ Node current2 = node2;
+ for (i = 0; i < d; i++) {
+     if (current1 == null) {
+         return -1;
+     }
+     current1 = current1.next;
+ }
+ while (current1 != null && current2 != null) {
+     if (current1.data == current2.data) {
+         return current1.data;
+     }
+     current1 = current1.next;
+     current2 = current2.next;
+ }
+
+ return -1;
 }
-*/
+
+/*Takes head pointer of the linked list and
+returns the count of nodes in the list */
+int getCount(Node node) {
+ Node current = node;
+ int count = 0;
+
+ while (current != null) {
+     count++;
+     current = current.next;
+ }
+
+ return count;
+}
+
+ public static void main(String[] args) {
+	 Test list = new Test();
+	 
+     // creating first linked list
+     list.head1 = new Node(3);
+     list.head1.next = new Node(6);
+     list.head1.next.next = new Node(15);
+     list.head1.next.next.next = new Node(15);
+     list.head1.next.next.next.next = new Node(30);
+
+     // creating second linked list
+     list.head2 = new Node(10);
+     list.head2.next = new Node(15);
+     list.head2.next.next = new Node(30);
+     System.out.println("The node of intersection is " + list.getNode());
+
+ }
+}

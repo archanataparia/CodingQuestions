@@ -21,8 +21,8 @@ public class FindCycleInLinkList {
 	        
 	        Boolean result = findLoop1(head);
 			System.out.println("Result1 "+result);
-			Boolean result2 = findLoop2(head);
-			System.out.println("Result2 "+result2);
+			Node result2 = findLoop2(head);
+			System.out.println("Result2 "+result2.data);
 			
 			sc.close();
 			
@@ -50,20 +50,54 @@ public class FindCycleInLinkList {
 	}
 	
 	//Floyd cycle finding algorithm O(n)time and O(1)space
-	private static Boolean findLoop2(Node head) {
+	private static Node findLoop2(Node head) {
 		/*it uses 2 ptr moving at different speed to walk the link list. 
 		 * Once they enter the loop they expected to meet. slow ptr moves 1 place and fast moves 2 place at a time
 		 */
-		if(head==null) return false;
+		
+		if(head==null) {return null;}
 		Node pSlow=head;
 		Node pFast=head;
-		while (pSlow.next!=null && pFast.next!=null && pFast.next.next!=null)
+		boolean loopExist1=false;
+		boolean loopExist2=false;
+		while (pSlow!=null && pFast!=null && pFast.next!=null)
 		{
 			pSlow=pSlow.next;
 			pFast=pFast.next.next;
-			if(pSlow==pFast)return true;//a loop exists
+			if(pSlow==pFast)
+			{
+				loopExist1=true;
+				loopExist2=true;
+				break;//return true;
+			}//a loop exists
+			
 		};
-		return false;
+		//return false;//end of code if we are not returning starting point of cycle
+		int counter=0;
+		//if we are asked to calculate size of loop then we can extend this code
+		if(loopExist1)
+		{
+			pFast=pFast.next;//coz both pr are equal now so keep slow ptr as it is and move fast ptr only until it comes back to slow ptr
+			while(pSlow!=pFast)
+			{
+				pFast=pFast.next;
+				counter++;
+			}
+			System.out.println("length of cycle is "+counter);
+		}
+		//if we need to return node where cycle started this code can be extended
+		if(loopExist2)
+		{
+			pSlow=head;//reset slow ptr
+			while(pSlow!=pFast)
+			{
+			 //move both ptr fast is moving in backward dir and slow is moving in fw dir and they will meet at start pt of cycle 	
+				pSlow=pSlow.next;
+				pFast=pFast.next;
+			}
+			return pSlow;
+		}
+		return null;	
 	}
 
 }
