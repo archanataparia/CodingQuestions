@@ -1,26 +1,23 @@
-package StringNArraysCTC;
-
+package Stack;
 import java.util.LinkedList;
+import java.util.Scanner;
 import java.util.Stack;
-import java.io.*;
-public class Test {
-	
-	/**
-	 * Imagine a (literal) stack of plates. If the stack gets too high, it
-	 * might topple. Therefore, in real life, we would likely start a new
-	 * stack when the previous stack exceeds some threshold. Implement a
-	 * data structure SetOfStacks that mimics this. SetOfStacks should be
-	 * composed of several stacks and should create a new stack once the
-	 * previous one exceeds capacity. SetOfStacks.push() and SetOfStacks.pop()
-	 * should behave identically to a single stack (that is, pop() should
-	 * return the same values as it would if there were just a single stack).
-	 *
-	 * FOLLOW UP
-	 * Implement a function popAt(int index) which performs a pop operation
-	 * on a specific sub-stack.
-	 */
 
-	    private static final int STACK_SIZE = 3;
+import StringNArraysCTC.Test;
+
+import java.io.*;
+
+/**
+ * Imagine a (literal) stack of plates. If the stack gets too high, it  might topple. 
+ * Therefore, in real life, we would likely start a new stack when the previous stack exceeds some threshold. 
+ * Implement a data structure SetOfStacks that mimics this. SetOfStacks should be composed of several stacks 
+ * and should create a new stack once the previous one exceeds capacity. SetOfStacks.push() and SetOfStacks.pop()
+ * should behave identically to a single stack (that is, pop() should return the same values as it would if there were just a single stack).
+  FOLLOW UP
+	 * Implement a function popAt(int index) which performs a pop operation
+	 * on a specific sub-stack*/
+public class SetOfStacks {
+	 private static final int STACK_SIZE = 3;
 	    private LinkedList<Stack<Integer>> stacks = new LinkedList<Stack<Integer>>();
 
 	    public void push(int item) {
@@ -64,13 +61,11 @@ public class Test {
 	            for (int item : stack)
 	                System.out.print(item + " ");
 	           
-	            System.out.println("[TOP]");
+	            System.out.println();
 	        }
 	    }
-
-	    //TEST----------------------------------
-	    public static void main(String[] args) {
-	        Test setOfStacks = new Test();
+    public static void main(String[] args) {
+	    	SetOfStacks setOfStacks = new SetOfStacks();
 	        setOfStacks.push(1); setOfStacks.push(2); setOfStacks.push(3);
 	        setOfStacks.push(4); setOfStacks.push(5); setOfStacks.push(6);
 	        setOfStacks.push(7); setOfStacks.push(8); setOfStacks.push(9);
@@ -82,6 +77,5 @@ public class Test {
 	    }
 	
 
-}
- 
 
+}
