@@ -1,44 +1,41 @@
 package LinkedList;
 
 import java.util.Scanner;
-
-
-
-/* two linked list intersect at some point and become a signle link list. 
+/* two linked list intersect at some point and become a single link list. 
  * both lists may have different length before merging point*/
 public class IntersectTwoLinkList {
-	static Node head1, head2;
-
-	 static class Node {
-
-	     int data;
-	     Node next;
-
-	     Node(int d) {
-	         data = d;
-	         next = null;
-	     }
-	 }
 	 /*function to get the intersection point of two linked
 	 lists head1 and head2 */
-	 int getNode() {
-	     int c1 = getCount(head1);
-	     int c2 = getCount(head2);
+	class Result
+	{
+		public Node tail;
+		public int size;
+		Result(Node tail,int size)
+		{
+			this.tail=tail;
+			this.size=size;
+		}
+	}
+	 int findIntersection(Node head1,Node head2) {
+	     Result r1 = getCountAndTail(head1);
+	     Result r2 = getCountAndTail(head2);
 	     int d;
 
-	     if (c1 > c2) {
-	         d = c1 - c2;
+	     //if different tails then no intersection
+	     if(r1.tail!=r2.tail) return 0;
+	     
+	     if (r1.size > r2.size) {
+	         d = r1.size - r2.size;
 	         return _getIntesectionNode(d, head1, head2);
 	     } else {
-	         d = c2 - c1;
+	         d = r2.size - r1.size;
 	         return _getIntesectionNode(d, head2, head1);
 	     }
 	 }
 
 
-	/* function to get the intersection point of two linked
-	lists head1 and head2 where head1 has d more nodes than
-	head2 */
+	/* function to get the intersection point of two linked lists head1 and head2 where head1 
+	 * has d more nodes than head2 */
 	int _getIntesectionNode(int d, Node node1, Node node2) {
 	 int i;
 	 Node current1 = node1;
@@ -60,9 +57,8 @@ public class IntersectTwoLinkList {
 	 return -1;
 	}
 
-	/*Takes head pointer of the linked list and
-	returns the count of nodes in the list */
-	int getCount(Node node) {
+	/*Takes head pointer of the linked list and returns the count of nodes in the list */
+	Result getCountAndTail(Node node) {
 	 Node current = node;
 	 int count = 0;
 
@@ -71,24 +67,26 @@ public class IntersectTwoLinkList {
 	     current = current.next;
 	 }
 
-	 return count;
+	 return new Result(current,count);
 	}
 	public static void main(String[] args) {
 		 
 		 IntersectTwoLinkList list = new IntersectTwoLinkList();
 		 
 	     // creating first linked list
-	     list.head1 = new Node(3);
-	     list.head1.next = new Node(6);
-	     list.head1.next.next = new Node(15);
-	     list.head1.next.next.next = new Node(15);
-	     list.head1.next.next.next.next = new Node(30);
-
+		 Node head1=null;
+		 head1=LinkList.insertLast(head1,3);
+		 head1=LinkList.insertLast(head1,6);
+		 head1=LinkList.insertLast(head1,15);
+		 head1=LinkList.insertLast(head1,15);
+		 head1=LinkList.insertLast(head1,30);
+		
 	     // creating second linked list
-	     list.head2 = new Node(10);
-	     list.head2.next = new Node(15);
-	     list.head2.next.next = new Node(30);
-	     System.out.println("The node of intersection is " + list.getNode());
+		 Node head2=null;
+		 head2=LinkList.insertLast(head2,10);
+		 head2=LinkList.insertLast(head2,15);
+		 head2=LinkList.insertLast(head2,30);
+	     System.out.println("The node of intersection is " + list.findIntersection(head1,head2));
 	}
 
 	/*private static Node findIntersectingNode(Node head, Node head2) {

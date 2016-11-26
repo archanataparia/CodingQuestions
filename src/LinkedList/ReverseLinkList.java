@@ -23,7 +23,7 @@ public class ReverseLinkList {
 
 	}
 
-	private static Node reverseList(Node head) {
+	public static Node reverseList(Node head) {
 		Node currentNode = head;
 		Node prevNode = null;
 		Node nextNode = null;
