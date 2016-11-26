@@ -11,7 +11,9 @@ Find the maximum possible height of the stacks such that all of the stacks are e
  more of the three stacks until they're all the same height, then print the height. 
  The removals must be performed in such a way as to maximize the height.
  sample input 
- The first line contains three space-separated integers, , , and , describing the respective number of cylinders in stacks , , and . The subsequent lines describe the respective heights of each cylinder in a stack from top to bottom:
+ The first line contains three space-separated integers, , , and , describing the 
+ respective number of cylinders in stacks , , and . The subsequent lines 
+ describe the respective heights of each cylinder in a stack from top to bottom:
  5 3 4
 3 2 1 1 1
 4 3 2
@@ -86,7 +88,7 @@ public class EqualStackHeight{
 	             Stackobj4 = Stackobj4.compare(Stackobj3);
 	             Stackobj4.unshift();
 	      }
-	       System.out.println("Maxi height is "+Stackobj1.height);
+	       System.out.println("Maxi height is "+Stackobj3.height);
 		sc.close();
 
 	

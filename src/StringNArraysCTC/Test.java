@@ -3,146 +3,128 @@ package StringNArraysCTC;
 import java.io.*;
 
 
-public class Test {
+	public class Test {
+		 
+			    //This is the stack node class
+			    class StackNode {
+			        //This is the value of the node
+			        int value;
+			        //This is showing the previous node
+			        int prev;
+			        //This is the constructor of the class
+			        StackNode(int value, int prev) {
+			            this.value = value;
+			            this.prev = prev;
+			        }
+			    }
+
+			    //This keeps the stack nodes
+			    private StackNode[] stackNodes = null;
+			    private static int CAPACITY = 10;
+			    //This keeps the top of free list
+			    private int freeListTop = 0;
+			    //This is the variable for the size
+			    private int size = 0;
+			    //These are the pointers to the three stacks
+			    private int[] stackPointers = { -1, -1, -1 };
+
+			    //This is the constructor of the main class
+			    Test() {
+			        //Initialize the stack nodes
+			        stackNodes = new StackNode[CAPACITY];
+			        //initialize the free list
+			        initFreeList();
+			    }
+
+			    //Initialize the free list
+			    private void initFreeList() {
+			        for (int i = 0; i < CAPACITY; i++) {
+			            //The value of each node is 0 and it points to the next node
+			            stackNodes[i] = new StackNode(0, i + 1);
+			        }
+			    }
+
+			    //This is the push procedure
+			    public void push(int stackNum, int value) throws Exception {
+			        //Print the push information
+			        System.out.println("Push to stack "+stackNum+" value "+value);
+			        int freeIndex;
+			        int currentStackTop = stackPointers[stackNum - 1];
+			        //Find the free node
+			        freeIndex = getFreeNodeIndex();
+			        //Make a new node in the free index
+			        StackNode n = stackNodes[freeIndex];
+			        //Setting the previous node
+			        n.prev = currentStackTop;
+			        //Setting the value
+			        n.value = value;
+			        stackPointers[stackNum - 1] = freeIndex;
+			    }
+
+			    //This is the pop method
+			    public StackNode pop(int stackNum) throws Exception {
+			        //From which stack you want to pop. -1, since it starts from 0
+			        int currentStackTop = stackPointers[stackNum - 1];
+			        //This checks for stack underflow
+			        if (currentStackTop == -1) {
+			            throw new Exception("UNDERFLOW");
+			        }
+			        //Get the node as a temp node
+			        StackNode temp = stackNodes[currentStackTop];
+			        //Remove the node from stack
+			        stackPointers[stackNum - 1] = temp.prev;
+			        //Put this node as free node
+			        freeStackNode(currentStackTop);
+			        //Print the pop information
+			        System.out.println("Pop from stack "+stackNum+" value: "+temp.value);
+			        //Return the value
+			        return temp;
+			    }
+
+			    //Get a free node index
+			    private int getFreeNodeIndex() throws Exception {
+			        int temp = freeListTop;
+			        //Overflow
+			        if (size >= CAPACITY)
+			            throw new Exception("OVERFLOW");
+			        freeListTop = stackNodes[temp].prev;
+			        size++;
+			        //return the free node index
+			        return temp;
+			    }
+
+			    //Make one index free after a pop
+			    private void freeStackNode(int index) {
+			        stackNodes[index].prev = freeListTop;
+			        //Put the index in free list
+			        freeListTop = index;
+			        //Decrease the size by one
+			        size--;
+			    }
+
+			    public static void main(String args[]) {
+			        // Test Driver
+			    	Test mulStack = new Test();
+			        try {
+			            //Adding to those three stacks
+			            mulStack.push(1, 11);
+			            mulStack.push(1, 12);
+			            mulStack.push(1, 13);
+			            mulStack.push(1, 14);
+			            mulStack.push(2, 21);
+			            mulStack.push(2, 22);
+			            mulStack.push(3, 31);
+			            mulStack.push(3, 32);
+			            //Popping from those three stacks
+			            mulStack.pop(1);
+			            mulStack.pop(2);
+			            mulStack.pop(3);
+
+			        } catch (Exception e) {
+			            e.printStackTrace();
+			        }
+			    }
+			}
 
  
-	 private static Node head;  
-	  
-	 private static class Node {  
-	  private int value;  
-	  private Node next;  
-	  
-	  Node(int value) {  
-	   this.value = value;  
-	  
-	  }  
-	 }  
-	  
-	 public void addToTheLast(Node node) {  
-	  
-	  if (head == null) {  
-	   head = node;  
-	  } else {  
-	   Node temp = head;  
-	   while (temp.next != null)  
-	    temp = temp.next;  
-	  
-	   temp.next = node;  
-	  }  
-	 }  
-	  
-	  
-	 public void printList(Node printNode) {  
-	  Node temp = printNode;  
-	  while (temp != null) {  
-	   System.out.format("%d ", temp.value);  
-	   temp = temp.next;  
-	  }  
-	  System.out.println();  
-	 }  
-	  
-	 public static Node reverseLinkedList(Node node) {  
-	      if (node == null || node.next == null) {  
-	          return node;  
-	      }  
-	  
-	      Node remaining = reverseLinkedList(node.next);  
-	      node.next.next = node;  
-	      node.next = null;  
-	     return remaining;  
-	  }  
-	  
-	 // This function will do sum of numbers represented by linked list  
-	 public Node findSumOfNumbers(Node l1, Node l2) {  
-	  int carry =0;  
-	    
-	  Node newHead = null;  
-	  Node tempNodeForIteration=null;  
-	  int sum=0;  
-	  
-	  int firstIter=0;  
-	  while(l1!=null || l2!=null)  
-	  {  
-	   firstIter++;  
-	   sum=carry;  
-	   if(l1!=null)  
-	   {  
-	    sum=sum+l1.value;  
-	    l1=l1.next;  
-	   }  
-	  
-	   if(l2!=null)  
-	   {  
-	    sum=sum+l2.value;  
-	    l2=l2.next;  
-	   }  
-	  
-	  
-	   carry=sum/10;  
-	   sum=sum%10;  
-	   // Check if it first node for the result  
-	   if(firstIter==1)  
-	   {   
-	    tempNodeForIteration = new Node(sum);  
-	    newHead=tempNodeForIteration;  
-	   }  
-	   else  
-	   {  
-	    Node tempSumNode=new Node(sum);  
-	    tempNodeForIteration.next=tempSumNode;  
-	    tempNodeForIteration=tempNodeForIteration.next;  
-	   }  
-	     
-	  }  
-	  if(carry!=0)  
-	  {  
-	   Node tempNode=new Node(carry);  
-	   tempNodeForIteration.next=tempNode;  
-	  }  
-	  return newHead;  
-	 }  
-	  
-	 public static void main(String[] args) {  
-	  Test list = new Test();  
-	  // Creating a linked list  
-	  //Node head1=new Node(5);
-	  Node head1=new Node(7); 
-	  list.addToTheLast(head1);  
-	  list.addToTheLast(new Node(1)); 
-	  list.addToTheLast(new Node(6
-			  )); 
-	  /*list.addToTheLast(new Node(6));  
-	  list.addToTheLast(new Node(7));  
-	  list.addToTheLast(new Node(1));  
-	  list.addToTheLast(new Node(2));  */
-	  System.out.print("Number 1:  ");  
-	  list.printList(head1);  
-	  head=null;  
-	  //Node head2=new Node(6);  
-	  Node head2=new Node(5); 
-	  list.addToTheLast(head2);  
-	  list.addToTheLast(new Node(9)); 
-	  list.addToTheLast(new Node(2)); 
-	   /*list.addToTheLast(new Node(3));  
-	  list.addToTheLast(new Node(5));  
-	  list.addToTheLast(new Node(9)); */ 
-	    
-	  System.out.print("Number 2:  ");  
-	  list.printList(head2);  
-	  // Reversing first linkedList  
-	  //head1=reverseLinkedList(head1);  
-	   
-	  //Reversing second linkedList  
-	 // head2=reverseLinkedList(head2);  
-	    
-	  // function to find sum of two linkedlist represent by number  
-	  Node result= list.findSumOfNumbers(head1,head2);  
-	  // Reverse the above linkedlist to get actual sum  
-	  result=reverseLinkedList(result);  
-	  System.out.print("Sum:  ");  
-	  list.printList(result);  
-	    
-	 }  
-	  
-	}  
 

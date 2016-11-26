@@ -43,7 +43,6 @@ public class PalindromeLinkList {
 		Node next = null;
 		while(current!=null)
 		{
-			//Node n=new Node(head.data);//clone
 			next=current.next;
 			current.next=prev;
 			prev=current;
