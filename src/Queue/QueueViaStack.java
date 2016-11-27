@@ -14,6 +14,7 @@ public class QueueViaStack {
 		int o1=qs.remove();int o2=qs.remove();int o3=qs.remove();
 		System.out.println(" output "+o1+" "+o3);qs.display();
 		
+		
 
 	}
 	public int size()
