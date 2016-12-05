@@ -1,46 +1,27 @@
 package StringNArraysCTC;
 
-import java.util.LinkedList;
-import java.util.Queue;
-import java.util.Stack;
-
-
-
-
 public class Test {
-	Stack<Integer> st=new Stack<Integer>();
-	    public static void main(String[] args) {
-	    	 Test sq=new  Test();
-				sq.st.push(1);sq.st.push(6);sq.st.push(3);sq.st.push(4);sq.st.push(5);sq.st.push(6);
-				
-				System.out.println(sq.checkStackPair());	
-
+		    public static void main(String[] args) {
+	    	String a="ab";
+	    	String b="aa";
+	    	boolean flag=checkRotation(a,b);
+	    	
+	    	System.out.println(flag);
 	    }
-		private boolean checkStackPair() {
-			Queue<Integer> q1=new LinkedList<Integer>();
-			boolean flag=true;
-			
-			while(!st.isEmpty())
-				q1.add(st.pop());
-			while(!q1.isEmpty())
-				st.push(q1.remove());
-			
-			while(!st.isEmpty())
-			{
-				int n1=st.pop();
-				q1.add(n1);
-				if(!st.isEmpty())
-				{
-					int n2=st.pop();
-					q1.add(n2);
-					if(Math.abs(n1-n2)!=1) flag=false;
-				}
+
+			private static boolean checkRotation(String a, String b) {
+		    	int len = a.length();
+		    	int i=0;
+		    	if(a.length()!=b.length()) return false; 
+		    	while(i<a.length()&&a.charAt(i)==b.charAt(len-1))
+		    	{
+		    		System.out.println(a.charAt(i));
+		    		System.out.println(b.charAt(len));
+		    	    i++;
+		    		len--;
+		    	}
+				return true;
 			}
-			while(!q1.isEmpty())
-				st.push(q1.remove());
-			return flag;
-		}
-	
 	
 }
  

@@ -1,6 +1,8 @@
 package Tree;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Queue;
 import java.util.Stack;
 /*------------------------------------------------------------------------------------
@@ -357,11 +359,14 @@ private void inOrder(Node tempRoot) {
 		stack.push(root);
 		root=root.left;
 	}
+	List<Integer> a=new ArrayList<Integer>();
 	
 	while(stack.size()>0)
 	{
 		root=stack.pop();
-		System.out.print(root.data+" ");
+		a.add(root.data);
+	
+		System.out.print(" "+root.data);
 		if(root.right!=null)
 		{
 			root=root.right;
@@ -372,6 +377,10 @@ private void inOrder(Node tempRoot) {
 			}
 		}
 	}
+	//to find kth max element in the binary search tree here k is 3
+	int index=a.size()-3;
+	//System.out.print(" index "+index);
+	System.out.print(" 3 max element "+a.get(index));
 }
 
 //------------------BFS or level order traversal with recursion-------------------------
