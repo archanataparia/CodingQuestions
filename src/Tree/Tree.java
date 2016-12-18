@@ -10,6 +10,7 @@ import java.util.Stack;
  */
 public class Tree {
 	public Node root;
+	public Node temp;
 	public Tree()
 	{
 		root=null;
@@ -53,6 +54,7 @@ public class Tree {
 				}
 			}
 		}
+		
 	}//end of insert function
 	
 	//insert function with recursion
