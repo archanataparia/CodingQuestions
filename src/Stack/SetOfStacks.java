@@ -27,6 +27,7 @@ public class SetOfStacks {
 	            stacks.add(stack);
 	        } else {
 	            stacks.getLast().push(item);
+	            
 	        }
 	    }
 
