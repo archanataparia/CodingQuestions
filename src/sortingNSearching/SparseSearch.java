@@ -1,4 +1,4 @@
-package Sorting;
+package sortingNSearching;
 /*Given a sorted array of strings which is interspersed with empty strings, write a
 method to find the location of a given string.
 EXAMPLE

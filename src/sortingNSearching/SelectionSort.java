@@ -1,9 +1,9 @@
-package Sorting;
+package sortingNSearching;
 
 import java.util.Scanner;
 //O(n2)
-public class BubbleSort {
-
+public class SelectionSort {
+	
 	public static void main(String[] args) {
 		 Scanner in = new Scanner(System.in);
 		 System.out.println("Enter length");
@@ -15,26 +15,31 @@ public class BubbleSort {
 	        {
 	            arr[i] = in.nextInt();
 	        }
-	        bubbleSort(arr);
+	        selectionSort(arr);
 	        in.close();
 
 
 	}
 
-	private static void bubbleSort(Integer[] a) {
-		// move biggest element to left like bubble heavy element sorted first
-		int i,j,temp,len=a.length;
-		for(i=0;i<len;i++)
+	private static void selectionSort(Integer[] a) {
+		//left unsorted, right sorted
+		//select min element and move it to right or first
+		int min,temp;
+		int i,j,len=a.length;
+		for(j=0;j<len;j++)
 		{
-			for(j=0;j<len-i-1;j++)
+			//set minimum index at first element
+			min=j;
+			for(i=j+1;i<len;i++)
 			{
-				if(a[j]>a[j+1])
-				{
-					temp=a[j];
-					a[j]=a[j+1];
-					a[j+1]=temp;
-				}
+				if(a[i]<a[min])
+					min=i;
 			}
+			//swap values
+			temp=a[min];
+			a[min]=a[j];
+			a[j]=temp;
+			
 		}
 		System.out.println("Sorted array");
 		for(Integer intarr:a)System.out.print(" "+intarr);

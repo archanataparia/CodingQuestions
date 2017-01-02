@@ -1,4 +1,4 @@
-package Sorting;
+package sortingNSearching;
 import java.util.*;
 
 //to perform binary search sort the data first..here I am using bubble sort

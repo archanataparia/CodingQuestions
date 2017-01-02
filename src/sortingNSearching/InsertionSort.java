@@ -1,9 +1,9 @@
-package Sorting;
+package sortingNSearching;
 
 import java.util.Scanner;
-//O(n2)
-public class SelectionSort {
-	
+
+public class InsertionSort {
+
 	public static void main(String[] args) {
 		 Scanner in = new Scanner(System.in);
 		 System.out.println("Enter length");
@@ -15,32 +15,28 @@ public class SelectionSort {
 	        {
 	            arr[i] = in.nextInt();
 	        }
-	        selectionSort(arr);
+	        insertionSort(arr);
 	        in.close();
-
 
 	}
 
-	private static void selectionSort(Integer[] a) {
-		//left unsorted, right sorted
-		//select min element and move it to right or first
-		int min,temp;
-		int i,j,len=a.length;
-		for(j=0;j<len;j++)
-		{
-			//set minimum index at first element
-			min=j;
-			for(i=j+1;i<len;i++)
+	private static void insertionSort(Integer[] a) {
+		// divided list in sorted and unsorted parts
+		//in place sorting algo and number of comparsion in practical scenarios is  better than bubble and selection
+		int i,j,temp,value,hole,len=a.length;
+		for(i=1;i<len;i++)
+		{	
+			value=a[i];
+			hole=i;
+			while (hole>0 && value<a[hole-1])
 			{
-				if(a[i]<a[min])
-					min=i;
+				a[hole]=a[hole-1];
+				hole=hole-1;
 			}
-			//swap values
-			temp=a[min];
-			a[min]=a[j];
-			a[j]=temp;
-			
+			a[hole]=value; 
 		}
+		
+
 		System.out.println("Sorted array");
 		for(Integer intarr:a)System.out.print(" "+intarr);
 	}

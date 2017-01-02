@@ -1,8 +1,8 @@
-package Sorting;
+package sortingNSearching;
 
 import java.util.Scanner;
-
-public class InsertionSort {
+//O(n2)
+public class BubbleSort {
 
 	public static void main(String[] args) {
 		 Scanner in = new Scanner(System.in);
@@ -15,28 +15,27 @@ public class InsertionSort {
 	        {
 	            arr[i] = in.nextInt();
 	        }
-	        insertionSort(arr);
+	        bubbleSort(arr);
 	        in.close();
+
 
 	}
 
-	private static void insertionSort(Integer[] a) {
-		// divided list in sorted and unsorted parts
-		//in place sorting algo and number of comparsion in practical scenarios is  better than bubble and selection
-		int i,j,temp,value,hole,len=a.length;
-		for(i=1;i<len;i++)
-		{	
-			value=a[i];
-			hole=i;
-			while (hole>0 && value<a[hole-1])
+	private static void bubbleSort(Integer[] a) {
+		// move biggest element to left like bubble heavy element sorted first
+		int i,j,temp,len=a.length;
+		for(i=0;i<len;i++)
+		{
+			for(j=0;j<len-i-1;j++)
 			{
-				a[hole]=a[hole-1];
-				hole=hole-1;
+				if(a[j]>a[j+1])
+				{
+					temp=a[j];
+					a[j]=a[j+1];
+					a[j+1]=temp;
+				}
 			}
-			a[hole]=value; 
 		}
-		
-
 		System.out.println("Sorted array");
 		for(Integer intarr:a)System.out.print(" "+intarr);
 	}
