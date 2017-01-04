@@ -1,5 +1,5 @@
 package LinkedList;
-
+//imp
 import java.util.Scanner;
 //Given two numbers represented by two linked lists, write a function that returns sum list. 
 public class SumOfTwoLinkList {
@@ -20,8 +20,12 @@ public class SumOfTwoLinkList {
             int ele2=sc.nextInt();
             head2=LinkList.insertLast(head2,ele2);
         }
+        
     	   head1=reverseList(head1);
     	   head2=reverseList(head2);  
+    	   Node temp=addLists(head1,head2);
+           LinkList.display(temp);
+           System.out.println();
   Node result=sumOfTwoLinkList(head1,head2);
   result=reverseList(result);
         LinkList.display(result);
@@ -36,10 +40,8 @@ public class SumOfTwoLinkList {
 		  Node tempNodeForIteration=null;  
 		  int sum=0;  
 		  
-		  int firstIter=0;  
 		  while(head1!=null || head2!=null)  
 		  {  
-		   firstIter++;  
 		   sum=carry;  
 		   if(head1!=null)  
 		   {  
@@ -53,28 +55,26 @@ public class SumOfTwoLinkList {
 		    head2=head2.next;  
 		   }  
 		  
-		  
-		   carry=sum/10;  
-		   sum=sum%10;  
-		   // Check if it first node for the result  
-		   if(firstIter==1)  
+		  if(sum>9)//two digits sum
+		   {
+			  carry=sum/10;  
+			  sum=sum%10;
+		   } 
+		     
+		   if(newHead==null)  // Check if it first node for the result
 		   {   
 		    tempNodeForIteration = new Node(sum);  
 		    newHead=tempNodeForIteration;  
 		   }  
 		   else  
 		   {  
-		    Node tempSumNode=new Node(sum);  
-		    tempNodeForIteration.next=tempSumNode;  
+		    tempNodeForIteration.next=new Node(sum);  
 		    tempNodeForIteration=tempNodeForIteration.next;  
 		   }  
-		     
-		  }  
-		  if(carry!=0)  
-		  {  
-		   Node tempNode=new Node(carry);  
-		   tempNodeForIteration.next=tempNode;  
-		  }  
+		  } //end of while loop 
+
+		  if(carry!=0)//check for the last carry to add in the list 
+		    tempNodeForIteration.next=new Node(carry);
 		  return newHead;  
 	}
 
@@ -87,5 +87,28 @@ public class SumOfTwoLinkList {
 		head.next=null;
 		return reverse;
 	}
+	
+	//recursive approach
+	private static Node addLists(Node first, Node second) {    
+	    return addRecursive(first, second, 0);
+	 }
+	
+	private static Node addRecursive(Node first, Node second, int carry) {
+	    if (first == null && second == null && carry == 0) {
+	        return null;
+	    }
+	    else if (first == null && second == null && carry != 0) {
+	        return new Node(carry);
+	    }
+	    int firstData = first == null ? 0 : first.data;
+	    int secondData = second == null ? 0 : second.data;
+	    Node sum = new Node ((firstData + secondData + carry) % 10);
+	    int newCarry = (firstData + secondData + carry) / 10;
+	    first = first != null ? first.next : null;
+	    second = second != null ? second.next : null;
+	    sum.next = addRecursive(first , second, newCarry);
+	    return sum;
+	}
 
 }
+ 

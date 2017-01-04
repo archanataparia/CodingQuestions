@@ -15,7 +15,7 @@ public class CommanAncestor {
 			this.isAncestor=isAncestor;
 		}
 	}
-	//this method can handle scenario if one of the node is not present in the tree and node1 is a child of node2 or vice versa
+	
 	private Node LCA2(Node root, Node a, Node b)
 	{
 		Result result=LCA2SubProgram(root,a,b);
@@ -48,13 +48,14 @@ public class CommanAncestor {
 			return new Result(left.root!=null?left.root:right.root, false);//return the root which is not null
 		
 	}
+	//approach2
 	public Node LCA(Node root, Node a, Node b) {
-		   if (root == null) {
+		   if (root == null) 
 		       return null;
-		   }
-
-		   // If the root is one of a or b, then it is the LCA
-		   if (root == a || root == b) {
+		   
+		   if(a==null || b==null) return null;//if one of node is not present in the tree
+		   
+		   if (root == a || root == b) {// If the root is one of a or b, then it is the LCA
 		       return root;
 		   }
 
@@ -84,8 +85,8 @@ public class CommanAncestor {
 		tree.insert(87);
 		tree.displayTree();
 		Node a=tree.find(30);
-		Node b=tree.find(45);
-		Node output = ca.LCA2(tree.root, a, b);
+		Node b=tree.find(43);
+		Node output = ca.LCA(tree.root, a, b);
 		if(output!=null)
 		System.out.println("comman ancestor is "+output.data);
 		else

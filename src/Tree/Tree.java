@@ -428,6 +428,7 @@ private int getHeight(Node tempRoot) {
 		}
 		else
 		{
+			current.next=queue.peek();//to connect node at same level-not required in bfs
 			if(current.left!=null)
 				queue.add(current.left);
 			if(current.right!=null)
