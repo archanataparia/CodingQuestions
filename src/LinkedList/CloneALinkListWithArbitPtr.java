@@ -1,5 +1,6 @@
 package LinkedList;
-/*You are given a Double Link List with one pointer of each node pointing to the next node just like in a single link list. The second pointer however CAN point to any node in the list and not just the previous node. 
+/*You are given a Double Link List with one pointer of each node pointing to the next node just like in a single link list. 
+The second pointer however CAN point to any node in the list and not just the previous node. 
  * Now write a program in O(n) time to duplicate this list. That is, write a program which will create a copy of this list.*/
 //not my work
 import java.util.HashMap;

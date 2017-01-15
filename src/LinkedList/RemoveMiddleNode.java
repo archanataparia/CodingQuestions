@@ -24,7 +24,7 @@ public class RemoveMiddleNode {
 		Node prev=head;
 		Node cn=head;
 		int i=0;
-		while(cn.next!=null)
+		/*while(cn.next!=null)
 		{
 			if(i==0) 
 			{
@@ -37,6 +37,11 @@ public class RemoveMiddleNode {
 				prev=prev.next;
 				i=0;//set i=0 again to increment current pointer twice
 			}
+		}*/
+		while(cn.next.next.next!=null)
+		{
+			cn=cn.next.next;
+			prev=prev.next;
 		}
 		return prev;//prev points to middle node
 	}
@@ -53,7 +58,7 @@ public class RemoveMiddleNode {
 	      
 	        LinkList.display(head);
 	        Node result1=findMiddleNode(head);
-	        System.out.println(result1.data+ "enter node to delete");
+	        System.out.println(result1.data+ " enter node to delete");
 	        
 	       int k =sc.nextInt();
 	        Node n=head;

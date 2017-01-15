@@ -1,4 +1,4 @@
-package StringNArraysCTC;
+package array;
 
 import java.util.Scanner;
 

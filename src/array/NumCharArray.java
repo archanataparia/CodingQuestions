@@ -1,4 +1,4 @@
-package StringNArraysCTC;
+package array;
 
 public class NumCharArray {
     public static void main(String[] args) {

@@ -1,4 +1,4 @@
-package StringNArraysCTC;
+package array;
 
 public class MaxDiffArray {
 

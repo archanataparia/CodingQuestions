@@ -159,6 +159,7 @@ public class Tree {
 	
 	private Node getSuccessor(Node delNode)
 	{
+		//find the next-largest number following the key of the node to be deleted.
 		Node successor=delNode;
 		Node succParent=delNode;
 		Node current=delNode.right;

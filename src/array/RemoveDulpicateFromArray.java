@@ -1,4 +1,4 @@
-package StringNArraysCTC;
+package array;
 
 import java.util.*;
 
@@ -26,23 +26,20 @@ public class RemoveDulpicateFromArray {
 		for (String str: s){
 			set.add(str);
 		}
-		
+		System.out.println("displaying set "+set.toString());
 		
 	}
 
 	private static void removeDuplicate(String[] s) {
 		Arrays.sort(s); //Sort the array with Collection
-		System.out.println("****** Sorted String Array *******");
-		for (String str : s) {
-			System.out.print(" " + str);
-		}
+		
 		int i=0,j=1;
 		while(j<s.length)
 		{
 			
 			if(s[i].equals(s[j]))
 			{
-				System.out.println(s[j]);
+				//System.out.println(s[j]);
 				j++;
 			}
 			else 

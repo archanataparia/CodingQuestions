@@ -1,4 +1,4 @@
-package StringNArraysCTC;
+package array;
 
 import java.util.Scanner;
 // Program to display delete, insert and search in an unsorted array

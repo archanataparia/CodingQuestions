@@ -1,4 +1,4 @@
-package StringNArraysCTC;
+package array;
 
 import java.util.*;
 
@@ -11,7 +11,7 @@ public class ArrayDuplicateElement {
 		Set<String> set =new HashSet<String>();
 		for(String s:str)
 		{
-			if(set.add(s)==false) System.out.println("duplicatre: "+s);
+			if(!set.add(s)) System.out.println("duplicatre: "+s);
 		}
 		
 	}

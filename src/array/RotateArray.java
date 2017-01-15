@@ -3,8 +3,7 @@
 after rotate from kth(3) position from last 
 final list
 2 1 6 5 4 3*/ 
-package StringNArraysCTC;
-import java.util.*;
+package array;
 
 public class RotateArray {
 	static void rotateArray(int[] a, int k)
@@ -27,22 +26,14 @@ public class RotateArray {
 			i++;
 		}
 		for(int y=0;y<a.length;y++)
-			System.out.print(+a[y]);
+			System.out.print(" "+a[y]);
 		
 	}
 
 	public static void main(String[] args) {
-		Scanner sc = new Scanner(System.in);
-		int n = sc.nextInt();
-		int[] a = new int[n];
-		for(int i=0;i<n;i++)
-		{
-			a[i]=sc.nextInt();
-		}
-		System.out.println("enter k: ");
-		int k = sc.nextInt();
+		int[] a ={1,2,3,4,5,6};
+		int k = 3;
 		rotateArray(a,k);
-		sc.close();
 
 	}
 

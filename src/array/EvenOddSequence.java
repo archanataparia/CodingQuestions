@@ -1,4 +1,4 @@
-package StringNArraysCTC;
+package array;
 /*Given array of integers, partition it into 2 groups of even and odd numbers, so that all even numbers appear before odd numbers. E.g. given
 10, 3, 6, 7, 9, 9, 20
 the result could be 10, 6, 20, 3, 7, 9, 9*/

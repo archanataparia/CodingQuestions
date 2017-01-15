@@ -16,7 +16,7 @@ public class MergeSortedLinkList {
 	     }
 	 }
 	 public  void display(Node head)
-	    { System.out.println("head "+head);
+	    { //System.out.println("head "+head);
 	          Node start=head;
 	          while(start!=null)
 	          {
@@ -44,9 +44,8 @@ public class MergeSortedLinkList {
 	     list.display(result2);
 
 	}
-	private Node mergeListRec(Node head1, Node head2) {
-		Node h1=head1;
-		Node h2=head2;
+	private Node mergeListRec(Node h1, Node h2) {
+		
 		Node result=null;
 		//base condition
 		if(h1==null && h2== null) return null;

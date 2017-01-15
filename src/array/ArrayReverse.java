@@ -1,4 +1,4 @@
-package StringNArraysCTC;
+package array;
 import java.io.*;
 import java.util.*;
 import java.text.*;

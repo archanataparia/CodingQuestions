@@ -86,10 +86,11 @@ public class IntersectTwoLinkList {
 		 head2=LinkList.insertLast(head2,10);
 		 head2=LinkList.insertLast(head2,15);
 		 head2=LinkList.insertLast(head2,30);
-	     System.out.println("The node of intersection is " + list.findIntersection(head1,head2));
+	     System.out.println("The node of intersection is " + findIntersectingNode(head1,head2).data);
 	}
-
-	/*private static Node findIntersectingNode(Node head, Node head2) {
+	
+//second method
+	private static Node findIntersectingNode(Node head, Node head2) {
 		int l1=0,l2=0,diff=0;
 		Node h1=head;
 		Node h2=head2;
@@ -105,33 +106,34 @@ public class IntersectTwoLinkList {
 			h2=h2.next;
 			l2++;
 		}
-		
+		Node big=head;
+		Node small=head2;
 		//take the difference
 		if(l1<l2)
 		{
-			h1=head2;
-			h2=head;
+			big=head2;
+			small=head;
 			diff=l2-l1;
 		}
 		else
 		{
-			h1=head;
-			h2=head2;
+			big=head;
+			small=head2;
 			diff=l1-l2;
 		}
 		
 		//make diff steps in longer list
 		for(int i=0;i<diff;i++)
-			h1=h1.next;
+			big=big.next;
 		//steps in both list till match
-		while(h1!=null && h2!=null)
+		while(big!=null && small!=null)
 		{
-			if(h1.equals(h2)) return h1;
-			h1=h1.next;
-			h2=h2.next;
+			if(big.data==small.data) return big;
+			big=big.next;
+			small=small.next;
 		}
 			
 		return null;
-	}*/
+	}
 
 }
