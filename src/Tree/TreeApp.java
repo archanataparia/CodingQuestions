@@ -18,6 +18,13 @@ public class TreeApp {
 		tree.insert(87);
 		tree.insertRec(93);
 		tree.insertRec(97);
+		/*tree.root = new Node(1);
+        tree.root.left = new Node(2);
+        tree.root.right = new Node(3);
+        tree.root.left.left = new Node(4);
+        tree.root.left.right = new Node(5);
+        tree.root.right.left = new Node(6);
+        tree.root.right.right = new Node(7);*/
 		while(true)
 		{
 			System.out.println("Enter choice 1.display, 2.insert, 3.find, 4.delete, 5.traverse ");

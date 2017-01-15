@@ -25,7 +25,11 @@ class Calculation
 			 if(ch>='0'&& ch<='9')
 			 {
 				 //its a operand so push to the stack
+<<<<<<< HEAD
 				 
+=======
+				 //System.out.println("test3");
+>>>>>>> development
 				 stack.push((int)ch -'0');//convert char to int
 			 }
 			 else
@@ -38,7 +42,7 @@ class Calculation
 					 output = num1 +num2;
 					 break;
 				 case '-':
-					 output = num1 -num2;
+					 output = Math.abs(num1 -num2);
 					 break;
 				 case '*':
 					 output = num1 *num2;
@@ -66,7 +70,7 @@ public class EvaluatePostfix {
 		Integer result = cal.evaluatePostfixExpression();
 		System.out.println("Postfix Expression result is: "+result);
 	     in.close();
-	     System.out.println("test");
+	     //System.out.println("test");
 
 	}
 	

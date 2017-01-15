@@ -2,16 +2,8 @@ package LinkedList;
 
 
 import java.util.*;
-class Node{
-	int data;
-	Node next;
-	Node(int d){
-        data=d;
-        next=null;
-    }
-	
-}
-class LinkList {
+
+public class LinkList {
 	public static  Node insertFirst(Node head,int data)
 	{
 		Node newNode=new Node(data);

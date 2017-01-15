@@ -1,5 +1,5 @@
 package Tree;
-
+//imp
 import java.util.Scanner;
 
 /*Imp/emen t a function to check if a binary tree is a binary search tree*/

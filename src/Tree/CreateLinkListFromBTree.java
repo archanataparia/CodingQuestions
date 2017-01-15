@@ -92,19 +92,21 @@ public class CreateLinkListFromBTree {
 				 System.out.print(s.data+" ");
 			 }
 		 }
-		 System.out.print("no oflist"+ count);
+		 System.out.print("no oflist...... "+ count);
 		 
 		 //print arraylist of link list of type node
 		 count=0;
 		 for(int i=0;i<output2.size();i++)
 		 {
 			 count++;
+			 System.out.println("list ");
 			 for(Node s:output2.get(i))//printing each link list
 			 {
 				 System.out.print(s.data+" ");
 			 }
+			
 		 }
-		 System.out.print("no oflist"+ count);
+		 System.out.print("no oflist "+ count);
 	}
 
 

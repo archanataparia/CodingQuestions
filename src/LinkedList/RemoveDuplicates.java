@@ -8,7 +8,7 @@ How would you solve this problem if a temporary buffer is not allowed?*/
 public class RemoveDuplicates {
 
 		static Node removeDuplicate(Node head){
-			Hashtable ht = new Hashtable();
+			Hashtable<Integer,Boolean> ht = new Hashtable<Integer,Boolean>();
 			Node cn = head;
 			Node pn = null;
 			while(cn!=null){

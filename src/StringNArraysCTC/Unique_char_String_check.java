@@ -21,7 +21,14 @@ public class Unique_char_String_check {
 
 	 boolean checkString2(String str) 
 	 {
-		 if (str.length() > 256) return false;
+		
+		 char[] ch=str.toCharArray();
+		 Arrays.sort(ch);
+		 for(int i=1;i<ch.length;i++)
+		 {
+			 if(ch[i]==ch[i-1]) return false;
+		 }
+		 /* if (str.length() > 256) return false;
 		 boolean[] char_set = new boolean[256];
 		 for (int i = 0; i < str.length(); i++) 
 		 {
@@ -30,7 +37,7 @@ public class Unique_char_String_check {
 			 if (char_set[val]) { // Already found this char in string
 				 return false;}
 			 char_set[val] = true;
-		 }
+		 }*/
 		return true;
 	 }
 	 

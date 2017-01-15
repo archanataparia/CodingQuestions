@@ -13,17 +13,21 @@ public class ReverseLinkList {
 	            int ele=sc.nextInt();
 	            head=LinkList.insertLast(head,ele);
 	        }
+	    
 	        System.out.println("list before reverse");
 	        LinkList.display(head);
 	        
-	        Node result=reverseList(head);
+	       /* Node result=reverseList(head);
 	        System.out.println("list after reverse");
+	        LinkList.display(result);*/
+	        System.out.println("Linlist after partial reverse");
+	        Node result=reverseListParts(head,3);
 	        LinkList.display(result);
 			sc.close();
 
 	}
-
-	private static Node reverseList(Node head) {
+//method to reverse a link list
+	public static Node reverseList(Node head) {
 		Node currentNode = head;
 		Node prevNode = null;
 		Node nextNode = null;
@@ -37,8 +41,29 @@ public class ReverseLinkList {
 		head= prevNode;
 		
 		return head;
+	
+}
+	
+/*Reverse Linked list in parts iteratively. 
+ex 1->2->3->4->5->6->7->8 and if 'parts' is 3. 
+o/p = 3->2->1->6->5->4->8->7.*/
+	public static Node reverseListParts(Node head,int count) {
+		int c=count;
+		Node currentNode = head;
+		Node prevNode = null;
+		Node nextNode = null;
+		while (currentNode!=null && c>0 )//reverse list in parts
+		{
+			nextNode = currentNode.next;
+			currentNode.next=prevNode;
+			prevNode = currentNode;
+			currentNode = nextNode;
+			c--;
+		}
+		if(currentNode!=null)//recursive call to make nextpart reverse
+				head.next=reverseListParts(nextNode,count);
+		return prevNode;		
 	}
-
 }
 /*Recursive approach
  * 

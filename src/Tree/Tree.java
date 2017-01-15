@@ -1,11 +1,16 @@
 package Tree;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
 import java.util.Stack;
 /*------------------------------------------------------------------------------------
  * program to perform basic tree operations insert, delete, find and traverse
  */
 public class Tree {
 	public Node root;
+	public Node temp;
 	public Tree()
 	{
 		root=null;
@@ -49,6 +54,7 @@ public class Tree {
 				}
 			}
 		}
+		
 	}//end of insert function
 	
 	//insert function with recursion
@@ -153,6 +159,7 @@ public class Tree {
 	
 	private Node getSuccessor(Node delNode)
 	{
+		//find the next-largest number following the key of the node to be deleted.
 		Node successor=delNode;
 		Node succParent=delNode;
 		Node current=delNode.right;
@@ -181,8 +188,10 @@ public class Tree {
 				System.out.println("data in preorder using recursion: ");
 				preOrderRec(root);
 				break;
-		case 2: System.out.println("data in postorder using iteration: ");
+		case 2: System.out.println("data in postorder using iteration with one stack: ");
 				postOrder(root);
+				System.out.println("data in postorder using iteration with two stack: ");
+				postOrder2(root);
 				System.out.println("data in postorder using recursion: ");
 				postOrderRec(root);
 				break;	
@@ -191,12 +200,15 @@ public class Tree {
 				System.out.println("data in inorder using recursion: ");
 				inOrderRec(root);
 				break;
-		case 4: System.out.println("data in level order (BFS): ");
-				BFS(root);
+		case 4: System.out.println("data in level order (BFS): with recursion");
+				BFSRec(root);
+				System.out.println("data in level order (BFS): without recursion");
+				BFSIterative(root);
 				break;
 		default: System.out.println("invalid input");
 		}
 	}
+
 
 
 //------------------PREORDER traversal-------------------------
@@ -233,7 +245,7 @@ private void preOrderRec(Node tempRoot) {
 	
 }
 //------------------POSTORDER traversal-------------------------
-//postorder traversal without recursion
+//postorder traversal without recursion using one stack
 private void postOrder(Node tempRoot) {
 	// Left->Right->Root
 	Stack<Node> stack=new Stack<Node>();
@@ -284,9 +296,36 @@ private void postOrder(Node tempRoot) {
 			
 			prev=temp;
 	}//end of while
+	System.out.println();
 	
 }
+//------------------POSTORDER traversal-------------------------
+//postorder traversal without recursion using two stack
 //postorder traversal with recursion
+private void postOrder2(Node tempRoot) 
+{
+	Stack<Node> stack1=new Stack<Node>();
+	Stack<Node> stack2=new Stack<Node>();
+	Node temp=tempRoot;
+	if(temp==null)return;
+	stack1.push(temp);
+	while(!stack1.isEmpty())
+	{
+		Node top=stack1.peek();
+		stack2.push(stack1.pop());
+		if(top.left!=null)
+			stack1.push(top.left);
+		if(top.right!=null)
+			stack1.push(top.right);
+	}
+	while(!stack2.isEmpty())
+	{
+		System.out.print(stack2.peek().data+" ");
+		stack2.pop();
+	}
+	System.out.println();
+	
+}
 private void postOrderRec(Node tempRoot) {
 		// Left->Right->Root
 		if(tempRoot!=null)
@@ -323,48 +362,41 @@ private void inOrder(Node tempRoot) {
 		stack.push(root);
 		root=root.left;
 	}
+	List<Integer> a=new ArrayList<Integer>();
 	
 	while(stack.size()>0)
 	{
 		root=stack.pop();
-		System.out.print(root.data+" ");
+		a.add(root.data);
+	
+		System.out.print(" "+root.data);
 		if(root.right!=null)
 		{
 			root=root.right;
-			while(root!=null)
+			while(root!=null)//check for left node from this node
 			{
 				stack.push(root);
 				root=root.left;
 			}
 		}
 	}
-	
-	
-	while(!stack.isEmpty())
-	{
-		
-		Node topNode= stack.peek();
-		if(topNode.right!=null)
-			stack.push(topNode.right);//push right first in stack to pop left first
-	
-		if(topNode.left!=null)
-			stack.push(topNode.left);
-		
-		System.out.print(topNode.data+" ");
-		stack.pop();
-	}
+	//to find kth max element in the binary search tree here k is 3
+	int index=a.size()-3;
+	//System.out.print(" index "+index);
+	System.out.print(" 3 max element "+a.get(index));
 }
 
-//------------------BFS or level order traversal-------------------------
-private void BFS(Node tempRoot) {
+//------------------BFS or level order traversal with recursion-------------------------
+private void BFSRec(Node tempRoot) {
 	int i,height;
-	height=getHeight(tempRoot);
+	height=getHeightRec(tempRoot);
+	System.out.println("height is "+ height);
 	for(i=1;i<=height;i++) printLevelNode(tempRoot,i);
 	
 }
 
 //function to calculate height of the tree
-private int getHeight(Node tempRoot) {
+private int getHeightRec(Node tempRoot) {
 	// function to calculate height of a tree
 	int lHeight,rHeight;
 	if(tempRoot==null) return 0;
@@ -375,6 +407,36 @@ private int getHeight(Node tempRoot) {
 		if(lHeight>rHeight) return (lHeight+1);
 		else return (rHeight+1);
 	}
+}
+//function to calculate height of the tree without recursion
+private int getHeight(Node tempRoot) {
+	// thi is similar to level ordr traversal BFS
+	Queue<Node> queue=new LinkedList<Node>();
+	if(root==null)return 0;
+	queue.add(root);
+	int level=1;
+	queue.add(null);
+	while(!queue.isEmpty())
+	{
+		Node current=queue.poll();
+		//complete current level first
+		if(current==null)
+		{
+			//increase level
+			level++;
+			//put another level in queue
+			if(!queue.isEmpty())queue.add(null);//to keep loop continue while calculating height
+		}
+		else
+		{
+			current.next=queue.peek();//to connect node at same level-not required in bfs
+			if(current.left!=null)
+				queue.add(current.left);
+			if(current.right!=null)
+				queue.add(current.right);
+		}
+	}
+	return level;
 }
 
 //function to print data in BFS mode
@@ -389,6 +451,24 @@ private void printLevelNode(Node tempRoot, int level) {
 	
 }
 
+//------------------BFS or level order traversal without recursion-------------------------
+private void BFSIterative(Node root) {
+		// use queue
+	Queue<Node> queue=new LinkedList<Node>();
+	if(root==null)return;
+	queue.add(root);
+	while(!queue.isEmpty())
+	{
+		Node current=queue.poll();
+		//print current node
+		System.out.print(current.data+" ");
+		if(current.left!=null)
+			queue.add(current.left);
+		if(current.right!=null)
+			queue.add(current.right);
+	}
+		
+}
 //------------function to display tree-------------
 	public void displayTree()
 	{
