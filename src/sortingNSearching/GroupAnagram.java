@@ -31,7 +31,7 @@ public class GroupAnagram {
 		//convert hash table to array
 		int i=0;
 		Collection<String> values=map.values();//get collection of values
-		ArrayList<String> list=new ArrayList<String>(values);//get value
+		//ArrayList<String> list=new ArrayList<String>(values);//get value
 		System.out.println(values);
 		
 		return null;

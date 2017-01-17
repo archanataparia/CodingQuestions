@@ -40,7 +40,7 @@ public class MergeSortedLinkList {
 	     list.head2.next.next = new Node(35);
 	     //Node result=list.mergeListIteration(list.head1,list.head2);
 	     //list.display(result);
-	    Node result2=list.mergeListRec(list.head1,list.head2);
+	    Node result2=list.mergeListIteration(list.head1,list.head2);
 	     list.display(result2);
 
 	}
@@ -71,7 +71,7 @@ public class MergeSortedLinkList {
 		Node h2=head2;
 		Node n=new Node(0);
 		
-		Node head=n;
+		Node head=null;
 		
 		if(h1==null && h2== null) return null;
 		if(h1==null)return h2;
@@ -80,23 +80,37 @@ public class MergeSortedLinkList {
 		//compare two list
 		while(h1!=null && h2!=null)
 		{
+				
 			if(h1.data<=h2.data)
 			{
-				head.next=h1;
+				if(head==null)
+					head=new Node(h1.data);
+				else
+					head.next=h1;
 				h1=h1.next;
 			}
 			else
 			{
-				head.next=h2;
+				if(head==null)
+					head=new Node(h2.data);
+				else
+					head.next=h2;
 				h2=h2.next;
 			}
 			head=head.next;
+			
 		}
 		//add remaining content
-		if(h1!=null)
-			head.next=h1;
-		else
-			head.next=h2;
+		
+		while(h2!=null)
+		{
+				head.next=h2;
+		h2=h2.next;
+		}while(h1!=null)
+		{
+		head.next=h1;
+		h1=h1.next;
+		}
 		return head;
 	}
 	

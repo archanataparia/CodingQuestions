@@ -1,6 +1,6 @@
 package Queue;
 /*
-//need to be finish
+//need to finish
 class Node
 {
 	Integer data;

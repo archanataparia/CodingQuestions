@@ -13,10 +13,10 @@ public class PeaksAndValleys {
 	public static void main(String[] args) {
 		int[] a={5,3,1,2,3};
 		int[] a1={0,1,4,7,8,9};//output should be 1,0,7,4,9,8
-		System.out.println(Arrays.toString(a1));
+		System.out.println(Arrays.toString(a));
 		PeaksAndValleys pv=new PeaksAndValleys();
 		System.out.println("Array sorted in alternating sequence of peak and valley");
-		int[] output=pv.sortArray(a1);
+		int[] output=pv.sortArray(a);
 		System.out.println(Arrays.toString(output));
 	}
 
